@@ -1,14 +1,18 @@
 <?php 
 
 
+
+
+$dir = get_template_directory();
+require_once $dir . '/endpoints/user_post.php'; 
+
+
 # removendo rotas iniciais
 remove_action('rest_api_init', 'create_initial_rest_routes', 99);
 
-
-
 # mudando o prefixo da rota
 function change_name_route(){
-    return "json";
+    return 'json';
 }
 
 # change_name_route função de callback
