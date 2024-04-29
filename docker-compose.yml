@@ -1,0 +1,30 @@
+services: 
+    wordpress:
+        container_name: wordpress
+        image: wordpress
+        restart: always
+        ports: 
+            - 80:80
+        environment: 
+            WORDPRESS_DB_HOST: db
+            WORDPRESS_DB_USER: wpuser
+            WORDPRESS_DB_PASSWORD: wppass
+            WORDPRESS_DB_NAME: wpdb
+        volumes: 
+            - ./src:/var/www/html/wp-content/themes/api
+    db:
+        container_name: banco
+        image: mysql
+        restart: always
+        environment: 
+            MYSQL_DATABASE: wpdb
+            MYSQL_USER: wpuser
+            MYSQL_PASSWORD: wppass
+            MYSQL_RANDOM_ROOT_PASSWORD: '1'
+        volumes: 
+            - db:/var/lib/mysql
+networks: 
+    back:
+        
+volumes: 
+    db:
