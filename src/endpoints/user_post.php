@@ -1,21 +1,25 @@
 <?php
 
 
-function teste($data){
-    $nome = $data['nome'];
+function api_user_post($data){
+    $email =  $data['email'];
+    $username = $data['username'];
+    $password = $data['password'];
 
-    if(empty($nome)){
-        $response = new WP_Error('error', 'está vazio', ['status' => 406]);
-        return rest_ensure_response($response);
-    }
 
+    $response = [
+        "email" => $data['email'],
+        "username" => $data['username'],
+        "password" => $data['password']
+    ];
+
+    return rest_ensure_response($response);
 }
-
 
 function register_api_user_post(){
     register_rest_route('api', 'user', [
         'methods' => 'POST',
-        'callback' => 'teste'
+        'callback' => 'api_user_post'
     ]);
 }
 
