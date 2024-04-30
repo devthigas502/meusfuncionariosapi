@@ -32,18 +32,28 @@ function api_user_post($data){
         return rest_ensure_response($response);
     }
 
+    $response_id = wp_insert_user([
+        'user_login' => $username,
+        'user_email' => $email,
+        'user_pass' => $password,
+        'role' => 'subscriber',
+      ]);
+
+    $response = [
+        "message" => 'usuário cadastrado com sucesso',
+        "id" => $response_id
+    ];
 
     return rest_ensure_response($response);
 }
 
 function register_api_user_post(){
     register_rest_route('api', 'user', [
-        'methods' => 'POST',
+        'methods' => WP_REST_Server::CREATABLE,
         'callback' => 'api_user_post'
     ]);
 }
 
 add_action('rest_api_init', 'register_api_user_post');
-
 
 ?>
