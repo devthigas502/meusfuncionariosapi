@@ -5,7 +5,7 @@
 
 $dir = get_template_directory();
 require_once $dir . '/endpoints/user_post.php'; 
-
+require_once $dir . '/endpoints/user_get.php'; 
 
 # removendo rotas iniciais
 remove_action('rest_api_init', 'create_initial_rest_routes', 99);
