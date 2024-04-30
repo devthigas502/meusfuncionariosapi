@@ -18,4 +18,11 @@ function change_name_route(){
 # change_name_route função de callback
 add_filter('rest_url_prefix', 'change_name_route');
 
+
+function token_expire(){
+    return time() + (60 * 60 * 24);
+}
+
+add_action('jwt_auth_expire', 'token_expire');
+
 ?>
