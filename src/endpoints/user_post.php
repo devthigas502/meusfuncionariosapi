@@ -2,8 +2,8 @@
 
 
 function api_user_post($data){
-    $email =  $data['email'];
-    $username = $data['username'];
+    $email =  sanitize_email($data['email']);
+    $username = sanitize_text_field($data['username']);
     $password = $data['password'];
 
     if(empty($email) || empty($username) || empty($password)){
@@ -32,7 +32,7 @@ function api_user_post($data){
         return rest_ensure_response($response);
     }
 
-    
+
     return rest_ensure_response($response);
 }
 
