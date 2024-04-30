@@ -10,7 +10,17 @@ function api_user_post($data){
         $response = new WP_Error('error', 'Dados incompletos', ['status' => 406]);
         return rest_ensure_response($response);
     }
-    
+
+    if(username_exists($username)){
+        $response = new WP_Error('error', 'Usuário já cadastrado', ['status' => 403]);
+        return rest_ensure_response($response);
+    }
+
+    if(email_exists($email)){
+        $response = new WP_Error('error', 'Email já cadastrado', ['status' => 403]);
+        return rest_ensure_response($response);
+    }
+
     return rest_ensure_response($response);
 }
 
