@@ -6,13 +6,11 @@ function api_user_post($data){
     $username = $data['username'];
     $password = $data['password'];
 
-
-    $response = [
-        "email" => $data['email'],
-        "username" => $data['username'],
-        "password" => $data['password']
-    ];
-
+    if(empty($email) || empty($username) || empty($password)){
+        $response = new WP_Error('error', 'Dados incompletos', ['status' => 406]);
+        return rest_ensure_response($response);
+    }
+    
     return rest_ensure_response($response);
 }
 
