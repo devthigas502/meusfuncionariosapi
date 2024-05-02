@@ -10,9 +10,9 @@ function user_get(){
     }
 
     $response = [
-        'id' => $user->ID
-        'name' => $user->display_name
-        'email' => $user->user_email
+        'id' => $user->ID,
+        'name' => $user->display_name,
+        'email' => $user->user_email,
         'registered' => $user->user_registered
     ];
 
